@@ -1,5 +1,5 @@
 # SelfControlDemo
-Demo App Copied from Hyperledger Demo for SelfControl
+Demo App Based on from Hyperledger Demo for SelfControl
 
 Environment Set-up and Necessary Tools:  
 In order to Run this Sample app,  must have this env set-up done.  Instruction for Mac.  Can translate for windows/linux.
@@ -27,21 +27,35 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
   Clone the code from github
    * git clone https://github.com/jenmcgrath01/SelfControlDemo.git
    
+   Install latest Docker impages for Hyperledger Fabric
+        * Check for latest versions:  https://hyperledger-fabric.readthedocs.io/en/latest/samples.html#binaries
+        * cd SelfControlDemo
+        * Get them:  curl -sSL https://goo.gl/Q3YRTi | bash
+        * creates bin subdirectory in working directory has binaries for cryptogen, etc.
+        * Confirm with 'docker images' command.
+        
    Do the npm install (will create node_modules directory)
+   * cd SelfControlDemo
    * cd sc-app
    * npm install
    
-   Start the Fabric Clients
-   * cd sc-app
-   * ./startFabric.sh
+   Checking in:
+   * Scripts in SelfControlDemo/basic-network shoudl have execute permission
+   * SelfControlDemo should have 4 subdirectories (bin, sc-app, basic-network, chaincode)
+   * Shoudl have a node_modules subdirctory in the sc-app subdirectory
    
-   Register Users/StartServer:
+   Start the Fabric Clients
+    * cd ../basic-network; chmod +x * (may have some more permission problems....)
+    * cd SelfControlDemo/sc-app (if not already there)
+    * ./startFabric.sh (problem)
+   
+   Then register Users/StartServer:
    * node registerAdmin.js
    * node registerUser.js
    * node server.js
    
-   Then you can go to https://localhost:8000 to interact with the app.
+Go to https://localhost:8000 on localbrowser to interact with the app.
    
-   Teardown scripts (stop.sh and teardown.sh) are in the basic-network folder.
+Teardown scripts (stop.sh and teardown.sh) are in the basic-network folder.
    
    
