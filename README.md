@@ -24,17 +24,20 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    * get your path set-up
         * export PATH=$PWD/bin:$PATH
         
-  Clone the code from github
+  Clone the code from github:
+  
    * git clone https://github.com/jenmcgrath01/SelfControlDemo.git
    
-   Install latest Docker impages for Hyperledger Fabric
+   Install latest Docker images for Hyperledger Fabric:
+   
+   
         * Check for latest versions:  https://hyperledger-fabric.readthedocs.io/en/latest/samples.html#binaries
         * cd SelfControlDemo
         * Get them:  curl -sSL https://goo.gl/Q3YRTi | bash
         * creates bin subdirectory in working directory has binaries for cryptogen, etc.
         * Confirm with 'docker images' command.
         
-   Do the npm install (will create node_modules directory)
+   Do the npm install (will create node_modules directory):
    * cd SelfControlDemo
    * cd sc-app
    * npm install
@@ -43,12 +46,12 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    * Scripts in SelfControlDemo/basic-network shoudl have execute permission
    * SelfControlDemo should have 4 subdirectories (bin, sc-app, basic-network, chaincode)
    * Should have a node_modules subdirectory in the sc-app directory
-   * Should have .env file in the sc-app directory
+   * Should have .env file in the basic-neetwork directory
    
    Start the Fabric Clients
-    * cd ../basic-network; chmod +x * (may have some more permission problems....)
-    * cd SelfControlDemo/sc-app (if not already there)
-    * ./startFabric.sh (problem)
+    * cd ../basic-network; chmod +x *.sh (may have some more permission problems....)
+    * cd SelfControlDemo/sc-app; chomd +x *.sh
+    * ./startFabric.sh  (try this a couple times, the timing of the sleeps may be off)
    
    Then register Users/StartServer:
    * node registerAdmin.js
