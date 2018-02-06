@@ -4,11 +4,7 @@
 <html>
   <head>
     <title>SelfControl Demo Application</title>
-<<<<<<< HEAD
-    <link rel="icon" href="AppFrontSmall.png" type="image/gif">
-=======
     <link rel="icon" href="images/AppFrontSmall.png" type="image/gif">
->>>>>>> b681f513ed38090d23c9951d936778c69c0f9b9b
 
     <!-- require jquery and bootstrap scripts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,7 +15,6 @@
     <!-- adding style here -->
     <style type="text/css">
       header{
-        background-color: lightgray;
         font-size:20px;
         padding:15px;
       }
@@ -67,88 +62,23 @@
   </head>
   <body ng-app="application" ng-controller="appController">
     <header>
-      <div id="left_header">SelfControl Demonstration Application</div>
+      <img src="images/mainLogo.png" /> 
     </header>
 
     <div id="body">
       <div class="form-group">
-        <label>Query All Firearms</label>
-        <p><input id="queryAllFirearms" type="submit" value="Query" class="btn btn-primary" ng-click="queryAllFirearms()"></p>
+        <label font-size:24px;>Demonstration Application</label>
       </div>
- 
-      <table id="all_firearms" class="table" align="center">
-
-        <tr>
-          <th>ID</th>
-          <th>SerialNumber</th>
-          <th>Holder</th>
-          <th>Manufacturer</th>
-          <th>Model</th>
-          <th>Caliber</th>
-        </tr>
-
-        <tr ng-repeat="firearm in all_firearms">
-          <td>{{firearm.Key}}</td>
-          <td>{{firearm.serialNumber}}</td>
-          <td>{{firearm.holder}}</td>
-          <td>{{firearm.manufacturer}}</td>
-          <td>{{firearm.model}}</td>
-          <td>{{firearm.caliber}}</td>
-        </tr>
-      </table>
-
 
       <div class="form-group">
-        <label>Query a Specific Firearm Record</label><br>
-        <h5 style="color:red;margin-bottom:2%" id="error_query">Error: Please enter a valid Firearm Id</h5>
-
-        Enter a Firearm ID: <input id="createName" class="form-control" type="text" placeholder="Ex: 3" ng-model="firearm_id">
-        <input id="querySubmit" type="submit" value="Query" class="btn btn-primary" ng-click="queryFirearm()">
+        <a href="./buyer.html"> go to buyer app </a>
+        <br/>
+        <a href="./seller.html"> go to seller app </a>
+        <br/>
+        <a href="./regulator.html"> go to regulator app </a>
+        <br/>
+        <a href="./instructor.html"> go to instructor app </a>
       </div>
-
-      <table id="query_firearm" class="table" align="center">
-
-        <tr>
-          <th>SerialNumber</th>
-          <th>Holder</th>
-          <th>Manufacturer</th>
-          <th>Model</th>
-          <th>Caliber</th>
-        </tr>
-
-        <tr>
-          <td>{{query_firearm.serialNumber}}</td>
-          <td>{{query_firearm.holder}}</td>
-          <td>{{query_firearm.manufacturer}}</td>
-          <td>{{query_firearm.model}}</td>
-          <td>{{query_firearm.caliber}}</td>
-        </tr>
-      </table>
-
-
-      <div class="form-group">
-        <label>Create Firearm Record</label>
-        <h5 style="color:green;margin-bottom:2%" id="success_create">Success! Tx ID: {{create_firearm}}</h5>
-        <br>
-        Enter ID: <input class="form-control" type="text" placeholder="Ex: 11" ng-model="firearm.id">
-        Enter Serial Number: <input class="form-control" type="text" placeholder="Ex: 123ABC" ng-model="firearm.serialNumber">
-        Enter Manufacturer: <input class="form-control" type="text" placeholder="Ex: Colt" ng-model="firearm.manufacturer">
-        Enter Model: <input id="createName" class="form-control" type="text" placeholder="Ex: Commander" ng-model="firearm.model">
-        Enter Caliber: <input id="createName" class="form-control" type="text" placeholder="Ex: .45" ng-model="firearm.caliber">
-        Enter name of holder: <input class="form-control" type="text" placeholder="Ex: Caleb" ng-model="firearm.holder">
-        <input id="createSubmit" type="submit" value="Create" class="btn btn-primary" ng-click="recordFirearm()">
-      </div>
-
-
-      <div class="form-group">
-        <label>Change Firearm Holder</label>
-        <h5 style="color:green;margin-bottom:2%" id="success_holder">Success! Tx ID: {{change_holder}}</h5>
-        <br>
-        Enter ID: <input class="form-control" type="text" placeholder="Ex: 11" ng-model="holder.id">
-        Enter name of new holder: <input class="form-control" type="text" placeholder="Ex: Caleb" ng-model="holder.holder">
-        <input id="changeFirearmHolder" type="submit" value="Change Holder" class="btn btn-primary" ng-click="changeFirearmHolder()">
-      </div>
-    </div>
   </body>
     <!-- requiring the angular page -->
     <script type="text/javascript" src="app.js"> </script>
