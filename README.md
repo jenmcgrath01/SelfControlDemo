@@ -43,14 +43,12 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    * npm install
    
    Verify that you've got what you need:
-   * Scripts in SelfControlDemo/basic-network shoudl have execute permission
+   * Scripts in SelfControlDemo/basic-network and sc-app should have execute permission (chmod +x *.sh)
    * SelfControlDemo should have 4 subdirectories (bin, sc-app, basic-network, chaincode)
    * Should have a node_modules subdirectory in the sc-app directory
-   * Should have .env file in the basic-network directory
+   * Should have .env file in the basic-network directory (ls -la)
    
    Start the Fabric Clients
-    * cd ../basic-network; chmod +x *.sh (may have some more permission problems....)
-    * cd SelfControlDemo/sc-app; chomd +x *.sh
     * ./startFabric.sh  (try this a couple times, the timing of the sleeps may be off)
    
    Then register Users/StartServer:
