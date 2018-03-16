@@ -12,7 +12,7 @@ package main
 /* Imports  
 * 4 utility libraries for handling bytes, reading and writing JSON, 
 formatting, and string manipulation  
-* 2 specific Hyperledger Fabric specific libraries for Smart Contracts  
+e 2 specific Hyperledger Fabric specific libraries for Smart Contracts  
 */ 
 import (
 	"bytes"
@@ -70,6 +70,8 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 		return s.initLedger(APIstub)
 	} else if function == "recordFirearm" {
 		return s.recordFirearm(APIstub, args)
+	} else if function == "queryFirearmHistory" {
+		return s.queryFirearmHistory(APIstub, args)
 	} else if function == "queryAllFirearms" {
 		return s.queryAllFirearms(APIstub)
 	} else if function == "changeFirearmHolder" {
@@ -192,6 +194,57 @@ func (s *SmartContract) queryAllFirearms(APIstub shim.ChaincodeStubInterface) sc
 
 	return shim.Success(buffer.Bytes())
 }
+
+/*
+ * The queryFirearmHistory method *
+allows for assessing all the records added to the ledger for a given firearm
+This method takes one. Returns JSON string containing results. 
+ */
+func (s *SmartContract) queryFirearmHistory(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+
+
+	if len(args) != 1 {
+		return shim.Error("Incorrect number of arguments. Expecting 1")
+	}
+
+	resultsIterator, err := APIstub.GetHistoryForKey(args[0])
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	defer resultsIterator.Close()
+
+	// buffer is a JSON array containing QueryResults
+	var buffer bytes.Buffer
+	buffer.WriteString("[")
+
+	bArrayMemberAlreadyWritten := false
+	for resultsIterator.HasNext() {
+		queryResponse, err := resultsIterator.Next()
+		if err != nil {
+			return shim.Error(err.Error())
+		}
+		// Add comma before array members,suppress it for the first array member
+		if bArrayMemberAlreadyWritten == true {
+			buffer.WriteString(",")
+		}
+		buffer.WriteString("{\"Key\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(args[0])
+		buffer.WriteString("\"")
+
+		buffer.WriteString(", \"Record\":")
+		// Record is a JSON object, so we write as-is
+		buffer.WriteString(string(queryResponse.Value))
+		buffer.WriteString("}")
+		bArrayMemberAlreadyWritten = true
+	}
+	buffer.WriteString("]")
+
+	fmt.Printf("- queryFirearmHistory:\n%s\n", buffer.String())
+
+	return shim.Success(buffer.Bytes())
+}
+
 
 /*
  * The changeFirearm method *
