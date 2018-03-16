@@ -45,6 +45,7 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    Verify that you've got what you need:
    * Scripts in SelfControlDemo/basic-network and sc-app should have execute permission (chmod +x *.sh)
    * SelfControlDemo should have 4 subdirectories (bin, sc-app, basic-network, chaincode)
+     ** NOT SURE WEHRE BIN comes from .....
    * Should have a node_modules subdirectory in the sc-app directory
    * Should have .env file in the basic-network directory (ls -la)
    
