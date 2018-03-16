@@ -13,6 +13,9 @@ module.exports = function(app){
   app.get('/get_all_firearms', function(req, res){
     firearm.get_all_firearms(req, res);
   });
+  app.get('/get_firearm_history/:id', function(req, res){
+    firearm.get_firearm_history(req, res);
+  });
   app.get('/change_holder/:holder', function(req, res){
     firearm.change_holder(req, res);
   });
