@@ -16,11 +16,6 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
         * open open go1.9.2.darwin-amd64.pkg
         * echo $GOPATH and/or export GOPATH=$HOME/go (set in .profile if you want)
         * go version (shoudl be >=1.8)
-   * Install latest Docker impages for Hyperledger Fabric
-        * Check for latest versions:  https://hyperledger-fabric.readthedocs.io/en/latest/samples.html#binaries
-        * Get them:  curl -sSL https://goo.gl/Q3YRTi | bash
-        * creates bin subdirectory in working directory has binaries for cryptogen, etc.
-        * Confirm with 'docker images' command.
    * get your path set-up
         * export PATH=$PWD/bin:$PATH
         
@@ -45,6 +40,7 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    Verify that you've got what you need:
    * Scripts in SelfControlDemo/basic-network and sc-app should have execute permission (chmod +x *.sh)
    * SelfControlDemo should have 4 subdirectories (bin, sc-app, basic-network, chaincode)
+     ** NOTE: bin comes from hyperledger and stores fabric binaries
    * Should have a node_modules subdirectory in the sc-app directory
    * Should have .env file in the basic-network directory (ls -la)
    
