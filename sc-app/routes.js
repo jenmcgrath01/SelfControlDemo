@@ -19,4 +19,7 @@ module.exports = function(app){
   app.get('/change_holder/:holder', function(req, res){
     firearm.change_holder(req, res);
   });
+  app.get('/get_firearms_by_holder/:holderName', function(req, res){
+    firearm.get_firearms_by_holder(req, res);
+  });
 }

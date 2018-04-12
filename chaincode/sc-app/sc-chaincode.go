@@ -46,7 +46,7 @@ type Firearm  struct {  /* TODO:  Add ENUMERATIONS OR VALIDATIONS?? */
 
 /*
  * The Init method *
- called when the Smart Contract "tuna-chaincode" is instantiated by the network
+ called when the Smart Contract "sc-chaincode" is instantiated by the network
  * Best practice is to have any Ledger initialization in separate function 
  -- see initLedger()
  */
@@ -56,7 +56,7 @@ func (s *SmartContract) Init(APIstub shim.ChaincodeStubInterface) sc.Response {
 
 /*
  * The Invoke method *
- called when an application requests to run the Smart Contract "tuna-chaincode"
+ called when an application requests to run the Smart Contract "sc-chaincode"
  The app also specifies the specific smart contract function to call with args
  */
 func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response {
@@ -76,7 +76,9 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 		return s.queryAllFirearms(APIstub)
 	} else if function == "changeFirearmHolder" {
 		return s.changeFirearmHolder(APIstub, args)
-	}
+	} else if function == "queryFirearmByHolder" {
+                return s.queryFirearmByHolder(APIstub, args)
+        }
 
 	return shim.Error("Invalid Smart Contract function name.")
 }
@@ -105,7 +107,7 @@ Will add test data (10 firearm catches)to our network
  */
 func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Response {
 	firearm := []Firearm{
-		Firearm{Manufacturer: "ColtNEW", Model: "Commander 194", SerialNumber: "CJ42139", Action: "Semi", Caliber: ".45", DateAcquired: "2012", Holder:"Jen"},
+		Firearm{Manufacturer: "Colt", Model: "Commander 194", SerialNumber: "CJ42139", Action: "Semi", Caliber: ".45", DateAcquired: "2012", Holder:"Jen"},
 		Firearm{Manufacturer: "Kimber", Model: "Dessert Warrior", SerialNumber: "K425498", Action: "Semi", Caliber: ".45", DateAcquired: "2015", Holder:"Mariam"},
 		Firearm{Manufacturer: "Savage", Model: "Rascal", SerialNumber: "CJ42139", Action: "Bolt", Caliber: ".22", DateAcquired: "2013", Holder:"Ryan"},
 		Firearm{Manufacturer: "Remington", Model: "1100 Special", SerialNumber: "P156664V", Action: "Semi", Gague: "12gague", DateAcquired: "2010", Holder:"Remington CO"},
@@ -245,6 +247,62 @@ func (s *SmartContract) queryFirearmHistory(APIstub shim.ChaincodeStubInterface,
 	return shim.Success(buffer.Bytes())
 }
 
+/* The queryFirearmByHolder method *
+allows for assessing all the records added to the ledger for a given firearm
+This method takes one. Returns JSON string containing results. 
+ */
+func (s *SmartContract) queryFirearmByHolder(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+
+       //TODO:  make real query string once this is all wired up.  See example for now just using same as the history for key
+       //https://github.com/hyperledger/fabric-sdk-rest/blob/master/tests/input/src/marbles02/marbles_chaincode.go
+
+	if len(args) != 1 {
+		return shim.Error("Incorrect number of arguments. Expecting 1")
+	}
+
+       holder := args[0];;
+
+        //queryString := "{\"selector\":{\"holder\":\"jen\"}}"
+        queryString := fmt.Sprintf("{\"selector\":{\"holder\":\"%s\"}}",holder)
+         //{"selector":{"holder":"jen"}}
+
+	resultsIterator, err := APIstub.GetQueryResult(queryString)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	defer resultsIterator.Close()
+
+	// buffer is a JSON array containing QueryResults
+	var buffer bytes.Buffer
+	buffer.WriteString("[")
+
+	bArrayMemberAlreadyWritten := false
+	for resultsIterator.HasNext() {
+		queryResponse, err := resultsIterator.Next()
+		if err != nil {
+			return shim.Error(err.Error())
+		}
+		// Add comma before array members,suppress it for the first array member
+		if bArrayMemberAlreadyWritten == true {
+			buffer.WriteString(",")
+		}
+		buffer.WriteString("{\"Key\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(args[0])
+		buffer.WriteString("\"")
+
+		buffer.WriteString(", \"Record\":")
+		// Record is a JSON object, so we write as-is
+		buffer.WriteString(string(queryResponse.Value))
+		buffer.WriteString("}")
+		bArrayMemberAlreadyWritten = true
+	}
+	buffer.WriteString("]")
+
+	fmt.Printf("- queryFirearmHistory:\n%s\n", buffer.String())
+
+	return shim.Success(buffer.Bytes())
+}
 
 /*
  * The changeFirearm method *
