@@ -12,12 +12,19 @@ app.controller('appController', function($scope, appFactory){
 	$("#error_holder").hide();
 	$("#error_query").hide();
 	$("#error_history").hide();
-	$("#demo1_label").hide();
-	$("#demo1_img").hide();
-	$("#demo2_label").hide();
-	$("#demo2_claim_safety").hide();
-	$("#demo3_label").hide();
-	
+	$("#demo_buyer_1_label").hide();
+	$("#demo_buyer_1_img").hide();
+	$("#demo_seller_results_label").hide();
+	$("#demo_seller_1_label").hide();
+	$("#demo_seller_2_label").hide();
+	$("#demo_seller_3_label").hide();
+
+//TODO:  Get this from DB/
+        $scope.holderList=['Jen','Caleb','Ryan'];
+        $scope.actionList=['Single Shot','Semi-Automatic','Fully Automatic'];
+        $scope.ammoList=  ['.22 Centerfire','.22 RimFire','.45', '12 Gague'];
+
+
 	$scope.queryAllFirearms = function(){
 
 		appFactory.queryAllFirearms(function(data){
@@ -50,32 +57,39 @@ app.controller('appController', function($scope, appFactory){
 		});
 	}
 
-	$scope.demo1 = function(){
+	$scope.demo_buyer_1 = function(){
 
-	      $("#demo1_label").show();
-	      $("#demo1_img").show();
-	      $("#demo2_label").hide();
-	      $("#demo2_claim_safety").hide();
-	      $("#demo3_label").hide();
+	      $("#demo_buyer_1_label").show();
+	      $("#demo_buyer_1_img").show();
+             //TODO:  Call license API.....with Holder, action, caliber
+	}
+
+
+
+	$scope.demo_seller_1 = function(){
+
+	      $("#demo_seller_results_label").show();
+	      $("#demo_seller_1_label").show();
+	      $("#demo_seller_2_label").hide();
+	      $("#demo_seller_3_label").hide();
 			}
 
-	$scope.demo2 = function(){
+	$scope.demo_seller_2 = function(){
 
-	      $("#demo1_label").hide();
-	      $("#demo1_img").hide();
-	      $("#demo2_label").show();
-	      $("#demo2_claim_safety").show();
-	      $("#demo3_label").hide();
+	      $("#demo_seller_results_label").show();
+	      $("#demo_seller_1_label").hide();
+	      $("#demo_seller_2_label").show();
+	      $("#demo_seller_3_label").hide();
 			}
 
-	$scope.demo3 = function(){
+	$scope.demo_seller_3 = function(){
 
-	      $("#demo1_label").hide();
-	      $("#demo1_img").hide();
-	      $("#demo2_label").hide();
-	      $("#demo2_claim_safety").hide();
-	      $("#demo3_label").show();
+	      $("#demo_seller_results_label").show();
+	      $("#demo_seller_1_label").hide();
+	      $("#demo_seller_2_label").hide();
+	      $("#demo_seller_3_label").show();
 			}
+
 
 
 	$scope.queryFirearmHistory = function(){
@@ -92,6 +106,22 @@ app.controller('appController', function($scope, appFactory){
 			    return parseFloat(a.Key) - parseFloat(b.Key);
 			});
 			$scope.firearm_history = array;
+		});
+	}
+
+	$scope.queryFirearmsByHolder = function(){
+               
+		appFactory.queryFirearmsByHolder($scope.holderName, function(data){
+			var array = [];
+			for (var i = 0; i < data.length; i++){
+				parseInt(data[i].Key);
+				data[i].Record.Key = parseInt(data[i].Key);
+				array.push(data[i].Record);
+			}
+			array.sort(function(a, b) {
+			    return parseFloat(a.Key) - parseFloat(b.Key);
+			});
+			$scope.firearms_by_holder = array;
 		});
 	}
 
@@ -139,6 +169,12 @@ app.factory('appFactory', function($http){
 
 	factory.queryFirearmHistory = function(id, callback){
     	$http.get('/get_firearm_history/'+id).success(function(output){
+			callback(output)
+		});
+	}
+
+	factory.queryFirearmsByHolder = function(holderName, callback){
+    	$http.get('/get_firearms_by_holder/'+holderName).success(function(output){
 			callback(output)
 		});
 	}

@@ -20,6 +20,7 @@
 
         <div class="nav">
         <ul>
+            <li class="home"><a href="index.html">Home</a></li>
             <li class="buyer"><a href="buyer.html">Buyer</a></li>
             <li class="seller"><a href="seller.html">Seller</a></li>
             <li class="regulator"><a href="regulator.html">Regulator</a></li>
@@ -124,7 +125,30 @@
           <td>{{firearm.model}}</td>
           <td>{{firearm.caliber}}</td>
         </tr>
+          <br>
+        </table>
 
+          
+    <div class="form-group">
+        <label>Get a list of all holders or users</label>
+        <br>
+        <input id="queryAllUsers" type="submit" value="Query" class="btn btn-primary" ng-click="queryAllUsers()">
+      </div>
+
+      <table id="holders" class="table" align="center">
+
+        <tr>
+          <th>Holder</th>
+        </tr>
+
+        <tr ng-repeat="holder in all_holders">
+          <td>{{firearm.holder}}</td>
+        </tr>
+        </table>
+        
+
+          
+          
     </div>
   </body>
     <!-- requiring the angular page -->

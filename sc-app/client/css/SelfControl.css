@@ -55,8 +55,13 @@
     }
 
  .form-group{
-        width:50%;
-      }
+      width:50%;
+     }
+
+.form-group-licence-info{
+      width:30%;
+     }
+
 
   @media screen and (min-width: 600px) {
       
