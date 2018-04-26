@@ -1,0 +1,7 @@
+#all node_modules directories
+sc-app/node_modules/
+sc-api/node_modules/
+git_for_dummy
+bin
+sc-app/package-lock.json
+sc-api/package-lock.json
