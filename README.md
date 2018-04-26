@@ -33,16 +33,18 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
         * that script that gets pulled is activng funny.  the -s shoudl stop it from pulling the fabric-samples, but it isn't, so I just downloaded the script and modified it to do SAMPLE=false. I don't know if that's the right thing or not.  you don't need that fabric-samples
         * Confirm with 'docker images' command.
         
-   Do the npm install (will create node_modules directory):
+   Do the npm install (will create node_modules directory and install dependencies):
    * cd SelfControlDemo
    * cd sc-app
+   * npm install
+   * cd sc-api
    * npm install
    
    Verify that you've got what you need:
    * Scripts in SelfControlDemo/basic-network and sc-app should have execute permission (chmod +x *.sh)
    * SelfControlDemo should have 4 subdirectories (bin, sc-app, basic-network, chaincode)
      ** NOTE: bin comes from hyperledger and stores fabric binaries
-   * Should have a node_modules subdirectory in the sc-app directory
+   * Should have a node_modules subdirectory in the sc-app directory and sc-api
    * Should have .env file in the basic-network directory (ls -la)
    
    Start the Fabric Clients
@@ -52,6 +54,13 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    * node registerAdmin.js
    * node registerUser.js
    * node server.js
+
+   Then start the mongodb for the api:
+   *mongod
+   
+   Then start the api server from sc-api
+   *node server.sh OR 
+   *npm run start
    
 Go to https://localhost:8000 on localbrowser to interact with the app.
    
