@@ -45,10 +45,8 @@
               <select ng-model='licenseCaliber' ng-options='x for x in ammoList' style="margin-left: 9px"></select>
               <br><br>
               <input id="demo_buyer" type="submit" value="Check My License" class="btn btn-primary" ng-click="demo_buyer_1()"><br>
-             <label id="demo_buyer_1_label">Congratulations!  You are approved for purchase</label>
-           <br>
-         <img id="demo_buyer_1_img" src="images/fake_qr.png"/>
-        </p><hr>
+            <p ng-bind='resultsText'></p><br>
+             <img id="demo_buyer_1_img" src="images/fake_qr.png"/></p><hr>
 
         <p style="margin-left: 40px" >
         <label>Approve Access:</label>
@@ -64,7 +62,7 @@
             Do You Accept Ownership of this Firearm
             <br>
          <input style="margin-left: 50px" id="ApproveOwner" type="submit" value="Accept" class="btn btn-primary">
-         <input id="DenyOwner" type="submit" value="Decline class="btn btn-primary">
+         <input id="DenyOwner" type="submit" value="Decline" class="btn btn-primary">
          <br></p><hr>
         
         <p style="margin-left: 40px" >

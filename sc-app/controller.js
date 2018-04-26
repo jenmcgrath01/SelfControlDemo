@@ -16,6 +16,7 @@ var Fabric_Client = require('fabric-client');
 var path          = require('path');
 var util          = require('util');
 var os            = require('os');
+var licenseUrl            = "localhost:3000";
 
 function query_by_chaincode(request, callback){
        console.log("Request is", request);
@@ -131,11 +132,32 @@ return{
                );
         },
 
+	check_license: function(req, res){
+                var array = req.params.licenseRequestString.split("~");
+		var licenseHolder = array[0];
+		var licenseAction = array[1];
+		var licenseCaliber = array[2];
+                //calling license service
+                var url = 'http://'+licenseUrl+'/license/'+licenseHolder+'?Action='+licenseAction;
+                console.log('url is:', url)
+                http.get(url, function(res1){
+                         var body = '';
+
+                        res1.on('data', function(chunk){
+                        body += chunk;
+                  });
+
+                    res1.on('end', function(){
+                     res.json(JSON.parse(body));
+                    });
+                });
+ 
+        },
+
 	add_firearm: function(req, res){
                 //TODO:  Cleanup and refactor the db stuff out of here
 		console.log("submit recording of a firearm : ");
 
-		
                 //get inputs
                 var array = req.params.firearm.split("-");
 		var key = array[0]

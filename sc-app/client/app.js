@@ -12,7 +12,6 @@ app.controller('appController', function($scope, appFactory){
 	$("#error_holder").hide();
 	$("#error_query").hide();
 	$("#error_history").hide();
-	$("#demo_buyer_1_label").hide();
 	$("#demo_buyer_1_img").hide();
 	$("#demo_seller_results_label").hide();
 	$("#demo_seller_1_label").hide();
@@ -20,9 +19,13 @@ app.controller('appController', function($scope, appFactory){
 	$("#demo_seller_3_label").hide();
 
 //TODO:  Get this from DB/
-        $scope.holderList=['Jen','Caleb','Ryan'];
-        $scope.actionList=['Single Shot','Semi-Automatic','Fully Automatic'];
-        $scope.ammoList=  ['.22 Centerfire','.22 RimFire','.45', '12 Gague'];
+        $scope.holderList=['Jen','Caleb','Ryan','Chris'];
+        $scope.actionList=['Lever','Semi-Automatic','Automatic'];
+        $scope.firearmType=['Rifle','Shotgun','Handgun','Other'];
+        $scope.ammoList=  ['.22','.300','.270'];
+        $scope.rifleAmmoList=  ['.22','.300','.270'];
+        $scope.hangunAmmoList=  ['.22','.45'];
+        $scope.shotgunAmmoList=  ['12 Gague','14 Gague'];
 
 
 	$scope.queryAllFirearms = function(){
@@ -59,12 +62,23 @@ app.controller('appController', function($scope, appFactory){
 
 	$scope.demo_buyer_1 = function(){
 
-	      $("#demo_buyer_1_label").show();
-	      $("#demo_buyer_1_img").show();
-             //TODO:  Call license API.....with Holder, action, caliber
+              var licenseRequest=new Object();
+              licenseRequest.licenseAction=$scope.licenseAction;
+              licenseRequest.licenseCaliber=$scope.licenseCaliber;
+              licenseRequest.holderName=$scope.holderName;
+
+               appFactory.checkLicense(licenseRequest, function(data){
+                    if (data.response_code==100){
+	                       $("#demo_buyer_1_img").show();
+                               $scope.resultsText="Congratulations! You are ready to go! Your code is below"
+                    }
+                    else{
+	                       $("#demo_buyer_1_img").hide();
+                               $scope.resultsText="You are not approved: "+data.message;
+                    }
+
+                });
 	}
-
-
 
 	$scope.demo_seller_1 = function(){
 
@@ -205,6 +219,16 @@ app.factory('appFactory', function($http){
 		var holder = data.id + "-" + data.holder;
 
     	$http.get('/change_holder/'+holder).success(function(output){
+			callback(output)
+		});
+	}
+
+
+	factory.checkLicense = function(data, callback){
+
+                 var licenseRequestString=data.holderName+"~"+data.licenseAction+"~"+data.licenseCaliber;
+
+    	        $http.get('/check_license/'+licenseRequestString).success(function(output){
 			callback(output)
 		});
 	}
