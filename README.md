@@ -64,6 +64,8 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    *npm run start
    
 Go to https://localhost:8000 on localbrowser to interact with the app.
+
+Go to https://localhost:3000/users or https://localhost:3000/license to interact with API (there are collections in Postman to test functionality of the API)
    
 Teardown scripts (stop.sh and teardown.sh) are in the basic-network folder.
    
