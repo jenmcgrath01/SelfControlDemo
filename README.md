@@ -26,9 +26,9 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    Install latest Docker images for Hyperledger Fabric:
    
    
-        * Check for latest versions:  https://hyperledger-fabric.readthedocs.io/en/latest/samples.html#binaries
+        * Check for latest versions:  https://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html
         * cd SelfControlDemo
-        * Get them:  curl -sSL https://goo.gl/Q3YRTi | bash
+        * Get them:  curl -sSL curl -sSL https://goo.gl/6wtTN5 | bash -s 1.1.0
         * creates bin subdirectory in working directory has binaries for cryptogen, etc.
         * Confirm with 'docker images' command.
         
