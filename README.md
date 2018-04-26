@@ -39,6 +39,7 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    * npm install
    * cd sc-api
    * npm install
+   * npm install mongoose (not sure why this isn't in dependencies..)
    
    Verify that you've got what you need:
    * Scripts in SelfControlDemo/basic-network and sc-app should have execute permission (chmod +x *.sh)
