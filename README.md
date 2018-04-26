@@ -30,6 +30,7 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
         * cd SelfControlDemo
         * Get them:  curl -sSL curl -sSL https://goo.gl/6wtTN5 | bash -s 1.1.0
         * creates bin subdirectory in working directory has binaries for cryptogen, etc.
+        * that script that gets pulled is activng funny.  the -s shoudl stop it from pulling the fabric-samples, but it isn't, so I just downloaded the script and modified it to do SAMPLE=false. I don't know if that's the right thing or not.  you don't need that fabric-samples
         * Confirm with 'docker images' command.
         
    Do the npm install (will create node_modules directory):
