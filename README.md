@@ -76,3 +76,7 @@ just remember this is imported to JenCo123
 Just deleted a few lines to see how this looks:
 
 Just deleted a few lines to see how this looks.
+
+and thn adding some more things because
+I don't thionk that came out 
+correctly
