@@ -71,6 +71,8 @@ Teardown scripts (stop.sh and teardown.sh) are in the basic-network folder.
    
 Let's see how this change looks in GitPrime
 It will be five lines long
-but it's only in a readme, so it's hard to say
-IF it will show up in one way or another
 just remember this is imported to JenCo123
+
+Just deleted a few lines to see how this looks:
+
+Just deleted a few lines to see how this looks.
