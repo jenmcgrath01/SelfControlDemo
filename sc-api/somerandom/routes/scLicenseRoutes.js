@@ -8,4 +8,7 @@ module.exports = function(app) {
 
   app.route('/somerandom/:UserName')
     .get(somerandom.check_a_license);
+
+  app.route('/somerandom/prior/:UserName')
+    .get(somerandom.check_a_license_prior);
 };
