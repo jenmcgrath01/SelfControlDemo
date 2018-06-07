@@ -1,6 +1,5 @@
-    //TODO:  Make response codes constants and published on the API
-    //TODO:  Start API Documentation with this, some kind of response schema!?!
 'use strict'
+
 
 var url="http://localhost:3000/somerandom/"
 
@@ -42,6 +41,8 @@ function check_firearm_eligibility(user, action, caliber){
        problems[j]="Recent Background Check(Last recorded-"+user.backgroundCheckDate.substring(0,10)+")";
        j++;
     }
+    var timeDiff=Math.abs(curDate - bgDate);
+    var diffDays=Math.ceil(timeDiff/(1000*3600*24));
 
     return problems;
 }
