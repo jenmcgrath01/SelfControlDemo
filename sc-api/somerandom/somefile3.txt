@@ -1,0 +1,14 @@
+reare
+are
+lorum ipsum
+
+
+putting some more stuff in her for commit #2
+i put a new line in the middleof the file.  Wonder if that is churn or refactor or new
+
+and then we wer 
+ruen
+//junk is a comment
+
+
+adding a few more lines in for the third squash
