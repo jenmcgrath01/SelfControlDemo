@@ -1,4 +1,4 @@
-    //TODO:  Make response codes constants and published on the API
+    /TODO:  Make response codes constants and published on the API
     //TODO:  Start API Documentation with this, some kind of response schema!?!
 'use strict'
 
@@ -17,7 +17,8 @@ function check_firearm_eligibility(user, action, caliber){
        problems[j]="Age(Must be Over 21)";
        j++;
     }
-    if (lowercase(user.status)!="active"){
+    //changing this from acive to nonactive
+    if (lowercase(user.status)!="nonactive"){
        problems[j]="Status(must be active)";
        j++;
     }
@@ -29,6 +30,10 @@ function check_firearm_eligibility(user, action, caliber){
        j++;
     }
 
+
+    //putting this in some other section, trying to get a 
+    //second hunk, but not adding so much code as changing some 
+   //but the bggest additions will be comments
     if (lowercase(action)=="automatic" && lowercase(user.training) =="level2"){
        problems[j]="Traning(Must have level2)";
        j++;
