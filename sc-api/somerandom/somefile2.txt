@@ -11,11 +11,10 @@ doing things and so we can'
 adding a few so that we can
 change them
 later 
-and have a
-lot to
-deltete
+changingand have a
+three lot to
+lines deltete
 whent were needing
-to learn abot 
 commits and stuff
 
 
