@@ -6,6 +6,11 @@ lorum ipsum
 putting some more stuff in her for commit #2
 i put a new line in the middleof the file.  Wonder if that is churn or refactor or new
 
+I put three new 
+lines in the middle 
+of this file.  Expect this 
+SHA to show 4 new lines of code
+
 and then we wer 
 ruen
 //junk is a comment
