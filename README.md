@@ -58,7 +58,9 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    * node server.js
 
    Then start the mongodb for the api:
-   *mongod
+   *mongod  
+   * or mongod --config /usr/local/etc/mongod.conf
+   * this section pretty well is terrible...maybe if I get around to remembering why we have mongo in the firs tplace, I will udpate.  In the mean time , you're on your own with mongo
    
    Then start the api server from sc-api
    *node server.sh OR 
