@@ -18,6 +18,7 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
         * go version (shoudl be >=1.8)
    * get your path set-up
         * export PATH=$PWD/bin:$PATH
+   * Install Mongodb
         
   Clone the code from github:
   
