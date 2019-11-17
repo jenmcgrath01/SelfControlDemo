@@ -29,6 +29,8 @@
     "express": "^4.16.3",
     "https": "^1.0.0",
     "lower-case": "^1.1.4",
+    "mongo": "^0.1.0",
+    "mongoose": "^5.7.9",
     "request": "^2.85.0"
   }
 }
