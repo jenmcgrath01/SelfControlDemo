@@ -4,7 +4,7 @@
   Sample Chaincode based on Demonstrated Scenario
 
  This code is based on code written by the Hyperledger Fabric community.
-  Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/chaincode/fabcar/fabcar.go
+ Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/chaincode/fabcar/fabcar.go
  */
 
 package main
@@ -43,6 +43,13 @@ type Firearm  struct {  /* TODO:  Add ENUMERATIONS OR VALIDATIONS?? */
 	PurchaseLocation string `json:"purchaseLocation"`
 	Holder  string `json:"holder"`
 }
+
+type AccessTracker  struct {  /* TODO:  Add ENUMERATIONS OR VALIDATIONS?? */
+	AccessorID string `json:"accessorid"`  /* ID Of the person who accessed the counter */
+	AccessDate string `json:"accessDate"`  /* ID Of the person who accessed the counter */
+	AccessCounter string `json:"AccessCounter"`
+}
+
 
 /*
  * The Init method *
@@ -105,6 +112,8 @@ func (s *SmartContract) queryFirearm(APIstub shim.ChaincodeStubInterface, args [
  * The initLedger method *
 Will add test data (10 firearm catches)to our network
  */
+
+
 func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Response {
 	firearm := []Firearm{
 		Firearm{Manufacturer: "Colt", Model: "Commander 194", SerialNumber: "CJ42139", Action: "Semi", Caliber: ".45", DateAcquired: "2012", Holder:"Jen"},
@@ -113,8 +122,14 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 		Firearm{Manufacturer: "Remington", Model: "1100 Special", SerialNumber: "P156664V", Action: "Semi", Gague: "12gague", DateAcquired: "2010", Holder:"Remington CO"},
 		Firearm{Manufacturer: "Remington", Model: "1100 Special", SerialNumber: "P156665V", Action: "Semi", Gague: "12gague", DateAcquired: "2010", Holder:"Goods for the Woods, LLC"},
 	}
-
+ 	
 	i := 0
+        accesstracker := AccessTracker{AccessorID: "initJen", AccessDate:  "2019", AccessCounter: "0" }
+	trackerAsBytes, _ := json.Marshal(accesstracker)
+        APIstub.PutState(strconv.Itoa(i+1),trackerAsBytes)
+	fmt.Println("Added", accesstracker) 
+
+	i = i + 1
 	for i < len(firearm) {
 		fmt.Println("i is ", i)
 		firearmAsBytes, _ := json.Marshal(firearm[i])
@@ -158,6 +173,10 @@ func (s *SmartContract) queryAllFirearms(APIstub shim.ChaincodeStubInterface) sc
 
 	startKey := "0"
 	endKey := "999"
+
+        accesstracker := AccessTracker{AccessorID: "initJen", AccessDate:  "2019", AccessCounter: "1" }
+	trackerAsBytes, _ := json.Marshal(accesstracker)
+        APIstub.PutState(strconv.Itoa(1),trackerAsBytes)
 
 	resultsIterator, err := APIstub.GetStateByRange(startKey, endKey)
 	if err != nil {
