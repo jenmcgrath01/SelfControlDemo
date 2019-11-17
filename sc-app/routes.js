@@ -22,7 +22,4 @@ module.exports = function(app){
   app.get('/get_firearms_by_holder/:holderName', function(req, res){
     firearm.get_firearms_by_holder(req, res);
   });
-  app.get('/check_license/:licenseRequestString', function(req, res){
-    firearm.check_license(req, res);
-  });
 }
