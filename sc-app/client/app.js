@@ -18,14 +18,7 @@ app.controller('appController', function($scope, appFactory){
 	$("#demo_seller_2_label").hide();
 	$("#demo_seller_3_label").hide();
 
-//TODO:  Get this from DB/
         $scope.holderList=['Jen','Caleb','Ryan','Chris'];
-        $scope.actionList=['Lever','Semi-Automatic','Automatic'];
-        $scope.firearmType=['Rifle','Shotgun','Handgun','Other'];
-        $scope.ammoList=  ['.22','.300','.270'];
-        $scope.rifleAmmoList=  ['.22','.300','.270'];
-        $scope.hangunAmmoList=  ['.22','.45'];
-        $scope.shotgunAmmoList=  ['12 Gague','14 Gague'];
 
 
 	$scope.queryAllFirearms = function(){

@@ -37,8 +37,6 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    * cd SelfControlDemo
    * cd sc-app
    * npm install
-   * cd sc-api
-   * npm install
    
    Verify that you've got what you need:
    * Scripts in SelfControlDemo/basic-network and sc-app should have execute permission (chmod +x *.sh)
