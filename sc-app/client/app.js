@@ -60,51 +60,6 @@ app.controller('appController', function($scope, appFactory){
 		});
 	}
 
-	$scope.demo_buyer_1 = function(){
-
-              var licenseRequest=new Object();
-              licenseRequest.licenseAction=$scope.licenseAction;
-              licenseRequest.licenseCaliber=$scope.licenseCaliber;
-              licenseRequest.holderName=$scope.holderName;
-
-               appFactory.checkLicense(licenseRequest, function(data){
-                    if (data.response_code==100){
-	                       $("#demo_buyer_1_img").show();
-                               $scope.resultsText="Congratulations! You are ready to go! Your code is below"
-                    }
-                    else{
-	                       $("#demo_buyer_1_img").hide();
-                               $scope.resultsText="You are not approved: "+data.message;
-                    }
-
-                });
-	}
-
-	$scope.demo_seller_1 = function(){
-
-	      $("#demo_seller_results_label").show();
-	      $("#demo_seller_1_label").show();
-	      $("#demo_seller_2_label").hide();
-	      $("#demo_seller_3_label").hide();
-			}
-
-	$scope.demo_seller_2 = function(){
-
-	      $("#demo_seller_results_label").show();
-	      $("#demo_seller_1_label").hide();
-	      $("#demo_seller_2_label").show();
-	      $("#demo_seller_3_label").hide();
-			}
-
-	$scope.demo_seller_3 = function(){
-
-	      $("#demo_seller_results_label").show();
-	      $("#demo_seller_1_label").hide();
-	      $("#demo_seller_2_label").hide();
-	      $("#demo_seller_3_label").show();
-			}
-
-
 
 	$scope.queryFirearmHistory = function(){
                
@@ -223,15 +178,6 @@ app.factory('appFactory', function($http){
 		});
 	}
 
-
-	factory.checkLicense = function(data, callback){
-
-                 var licenseRequestString=data.holderName+"~"+data.licenseAction+"~"+data.licenseCaliber;
-
-    	        $http.get('/check_license/'+licenseRequestString).success(function(output){
-			callback(output)
-		});
-	}
 
 	return factory;
 });
