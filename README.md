@@ -18,6 +18,7 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
         * go version (shoudl be >=1.8)
    * get your path set-up
         * export PATH=$PWD/bin:$PATH
+   * Install Mongodb
         
   Clone the code from github:
   
@@ -57,28 +58,17 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    * node server.js
 
    Then start the mongodb for the api:
-   *mongod
+   * mongod  
+   * or mongod --config /usr/local/etc/mongod.conf
+   * this section pretty well is terrible...maybe if I get around to remembering why we have mongo in the firs tplace, I will udpate.  In the mean time , you're on your own with mongo
    
    Then start the api server from sc-api
-   *node server.sh OR 
-   *npm run start
+   * node server.js OR 
+   * npm run start
    
 Go to https://localhost:8000 on localbrowser to interact with the app.
 
 Go to https://localhost:3000/users or https://localhost:3000/license to interact with API (there are collections in Postman to test functionality of the API)
    
 Teardown scripts (stop.sh and teardown.sh) are in the basic-network folder.
-   
-Let's see how this change looks in GitPrime
-It will be five lines long
-just remember this is imported to JenCo123
-
-Just deleted a few lines to see how this looks:
-
-Just deleted a few lines to see how this looks.
-
-and thn adding some more things because
-I don't thionk that came out 
-
-take 3 or for or 5
-correctly
+ 
