@@ -72,3 +72,4 @@ Go to https://localhost:3000/users or https://localhost:3000/license to interact
    
 Teardown scripts (stop.sh and teardown.sh) are in the basic-network folder.
  
+Get vscode to say I'm jen not lilac
