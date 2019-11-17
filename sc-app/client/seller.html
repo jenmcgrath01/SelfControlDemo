@@ -40,41 +40,8 @@
           <br>
       </div>
 
-      <div class="form-group-licence-info">
-          
-        <label>Selling Step 1: Check Someone's License</label>
-         <br>
-                Enter Action Type: 
-         <select id="licenseAction" class="form-control" type="text">
-             <option>"Single Shot (bolt, lever)"</option>
-             <option>"Semi-Automatic"</option>
-             <option>"Fully Automatic (machine gun)"</option>
-         </select><br>
-                Enter Caliber/Gague:
-         <select id="licenseCaliber" class="form-control" type="text">
-             <option>".22"</option>
-             <option>".45"</option>
-             <option>"12 Gague"</option>
-         </select><br>
-           Enter License Number (scan picture, really):
-         <input class="form-control" type="text" placeholder="You'd enter a QR code or type in license #"  ng-model="licence.id"> <br>
-          
-           <input id="demo_seller_1" type="submit" value="Demo #1" class="btn btn-primary" ng-click="demo_seller_1()">
-           <input id="demo_seller_2" type="submit" value="Demo #2" class="btn btn-primary" ng-click="demo_seller_2()">
-        <input id="demo_seller_3" type="submit" value="Demo #3" class="btn btn-primary" ng-click="demo_seller_3()">
-          <br>
-           <h5 style="color:black;margin-bottom:2%" id="demo_seller_results_label">Results!</h5><br>
-          
-          <h5 style="color:green;margin-bottom:2%" id="demo_seller_1_label">Success! Licence Granted</h5>
-           <h5 style="color:orange;margin-bottom:2%" id="demo_seller_2_label">Try Again! Buyer didn't approve access</h5>
-           <h5 style="color:red;margin-bottom:2%" id="demo_seller_3_label">Sorry!  Buyer Ineligible for this Firearm</h5>
-          
-        <br>
-          <br>
-        </div>
-          
       <div class="form-group">
-        <label>Selling Step 2: Change the Holder to New Owner</label>
+        <label>Change the Holder to New Owner</label>
         <h5 style="color:green;margin-bottom:2%" id="success_holder">Success! Tx ID: {{change_holder}}</h5>
         <br>
         Enter ID: <input class="form-control" type="text" placeholder="Ex: 11" ng-model="holder.id">
