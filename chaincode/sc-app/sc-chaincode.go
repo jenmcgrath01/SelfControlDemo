@@ -59,7 +59,6 @@ type AccessTracker  struct {  /* TODO:  Add ENUMERATIONS OR VALIDATIONS?? */
  */
 func (s *SmartContract) Init(APIstub shim.ChaincodeStubInterface) sc.Response {
 
-        i := 0
         accesstracker := AccessTracker{AccessorID: "initJen", AccessDate:  "2019", AccessCounter: "0" }
 	trackerAsBytes, _ := json.Marshal(accesstracker)
         APIstub.PutState(strconv.Itoa(0),trackerAsBytes)
@@ -143,7 +142,7 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 		fmt.Println("j is ", j)
 		firearmAsBytes, _ := json.Marshal(firearm[j])
 		APIstub.PutState(strconv.Itoa(j+1), firearmAsBytes)
-		fmt.Println("Added", firearm[i])
+		fmt.Println("Added", firearm[j])
 		j = j + 1
 	}
 
