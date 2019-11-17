@@ -59,6 +59,11 @@ type AccessTracker  struct {  /* TODO:  Add ENUMERATIONS OR VALIDATIONS?? */
  */
 func (s *SmartContract) Init(APIstub shim.ChaincodeStubInterface) sc.Response {
 
+        i := 0
+        accesstracker := AccessTracker{AccessorID: "initJen", AccessDate:  "2019", AccessCounter: "0" }
+	trackerAsBytes, _ := json.Marshal(accesstracker)
+        APIstub.PutState(strconv.Itoa(0),trackerAsBytes)
+	fmt.Println("Added", accesstracker) 
 
 	return shim.Success(nil)
 }
@@ -117,11 +122,12 @@ func (s *SmartContract) queryFirearm(APIstub shim.ChaincodeStubInterface, args [
 
 func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Response {
 
-        i := 0
+        /* i := 0
         accesstracker := AccessTracker{AccessorID: "initJen", AccessDate:  "2019", AccessCounter: "0" }
 	trackerAsBytes, _ := json.Marshal(accesstracker)
-        APIstub.PutState(strconv.Itoa(i+1),trackerAsBytes)
-	fmt.Println("Added", accesstracker) 
+        APIstub.PutState(strconv.Itoa(0),trackerAsBytes)
+	fmt.Println("Added", accesstracker)  
+*/
 
 
   firearm := []Firearm{
@@ -130,16 +136,15 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 		Firearm{Manufacturer: "Savage", Model: "Rascal", SerialNumber: "CJ42139", Action: "Bolt", Caliber: ".22", DateAcquired: "2013", Holder:"Ryan"},
 		Firearm{Manufacturer: "Remington", Model: "1100 Special", SerialNumber: "P156664V", Action: "Semi", Gague: "12gague", DateAcquired: "2010", Holder:"Remington CO"},
 		Firearm{Manufacturer: "Remington", Model: "1100 Special", SerialNumber: "P156665V", Action: "Semi", Gague: "12gague", DateAcquired: "2010", Holder:"Goods for the Woods, LLC"},
-		Firearm{Manufacturer: "JUNK", Model: "1100 Special", SerialNumber: "P156665V", Action: "Semi", Gague: "12gague", DateAcquired: "2010", Holder:"Goods for the Woods, LLC"},
 	}
 
-	i = i + 1
-	for i < len(firearm) {
-		fmt.Println("i is ", i)
-		firearmAsBytes, _ := json.Marshal(firearm[i])
-		APIstub.PutState(strconv.Itoa(i+1), firearmAsBytes)
+	j := 0
+	for j < len(firearm) {
+		fmt.Println("j is ", j)
+		firearmAsBytes, _ := json.Marshal(firearm[j])
+		APIstub.PutState(strconv.Itoa(j+1), firearmAsBytes)
 		fmt.Println("Added", firearm[i])
-		i = i + 1
+		j = j + 1
 	}
 
 	return shim.Success(nil)
