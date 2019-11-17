@@ -36,27 +36,7 @@
                    <select style= "margin-left: 15px" ng-model="holderName" ng-options="x for x in holderList" ></select>
         </p><hr style="border-top: 3px double #8c8b8b">
 
-        <p style="margin-left: 40px" >
-        <label>Check My License</label>
-         <br>
-               Select Action Type:
-              <select ng-model="licenseAction" ng-options="y for y in actionList" style="margin-left: 25px"></select><br><br>
-              Select Caliber/Gague:
-              <select ng-model='licenseCaliber' ng-options='x for x in ammoList' style="margin-left: 9px"></select>
-              <br><br>
-              <input id="demo_buyer" type="submit" value="Check My License" class="btn btn-primary" ng-click="demo_buyer_1()"><br>
-            <p ng-bind='resultsText'></p><br>
-             <img id="demo_buyer_1_img" src="images/fake_qr.png"/></p><hr>
 
-        <p style="margin-left: 40px" >
-        <label>Approve Access:</label>
-            Jen's Gun Store is trying to access your info.  Do you approve this access?
-            <br>
-         <input style="margin-left: 50px" id="Approve" type="submit" value="Approve" class="btn btn-primary">
-         <input id="Deny" type="submit" value="Decline" class="btn btn-primary">
-         <br>
-        </p><hr>
-        
         <p style="margin-left: 40px" >
         <label>Accept Firearm:</label>
             Do You Accept Ownership of this Firearm
