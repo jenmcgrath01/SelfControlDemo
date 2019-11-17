@@ -27,7 +27,7 @@ import (
 type SmartContract struct {
 }
 
-/* Define Firearm structure, with 4 properties.  
+/* Define Firearm structure
 Structure tags are used by encoding/json library
 */
 type Firearm  struct {  /* TODO:  Add ENUMERATIONS OR VALIDATIONS?? */
@@ -55,7 +55,7 @@ type AccessTracker  struct {  /* TODO:  Add ENUMERATIONS OR VALIDATIONS?? */
  * The Init method *
  called when the Smart Contract "sc-chaincode" is instantiated by the network
  * Best practice is to have any Ledger initialization in separate function 
- -- see initLedger()
+ -- see iccessnitLedger()
  */
 func (s *SmartContract) Init(APIstub shim.ChaincodeStubInterface) sc.Response {
 	return shim.Success(nil)
@@ -124,13 +124,13 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 	}
  	
 	i := 0
-        accesstracker := AccessTracker{AccessorID: "initJen", AccessDate:  "2019", AccessCounter: "0" }
+        accesstracker := AccessTracker{AccessorID: "initJenagain", AccessDate:  "2019", AccessCounter: "0" }
 	trackerAsBytes, _ := json.Marshal(accesstracker)
         APIstub.PutState(strconv.Itoa(i+1),trackerAsBytes)
 	fmt.Println("Added", accesstracker) 
 
 	i = i + 1
-	for i < len(firearm) {
+	for i < len(firearm)+1 {
 		fmt.Println("i is ", i)
 		firearmAsBytes, _ := json.Marshal(firearm[i])
 		APIstub.PutState(strconv.Itoa(i+1), firearmAsBytes)
@@ -141,11 +141,8 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 	return shim.Success(nil)
 }
 
-/*
- * The recordFirearm method *
-Fisherman like Sarah would use to record each of her firearm purchases. 
-This method takes in five arguments (attributes to be saved in the ledger). 
- */
+
+
 func (s *SmartContract) recordFirearm(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 12 {
@@ -153,7 +150,7 @@ func (s *SmartContract) recordFirearm(APIstub shim.ChaincodeStubInterface, args 
 	}
 
 	var firearm = Firearm{ Manufacturer: args[1], Importer: args[2], Model: args[3], SerialNumber: args[4], Type: args[5], Action: args[6], Caliber: args[7], Gague: args[8],
-                         DateAcquired: args[9], PurchaseLocation: args[10], Holder: args[11] } /* TODO:  THIS SHOULD BE FROM SOME KIND OF REFLECTION?? */
+                         DateAcquired: args[9], PurchaseLocation: args[10], Holder: args[11] } 
 
 	firearmAsBytes, _ := json.Marshal(firearm)
 	err := APIstub.PutState(args[0], firearmAsBytes)
@@ -174,9 +171,12 @@ func (s *SmartContract) queryAllFirearms(APIstub shim.ChaincodeStubInterface) sc
 	startKey := "0"
 	endKey := "999"
 
-        accesstracker := AccessTracker{AccessorID: "initJen", AccessDate:  "2019", AccessCounter: "1" }
+        /* This doesn't seem to work yet....
+        accesstracker := AccessTracker{AccessorID: "Update", AccessDate:  "2019", AccessCounter: "1" }
 	trackerAsBytes, _ := json.Marshal(accesstracker)
-        APIstub.PutState(strconv.Itoa(1),trackerAsBytes)
+        i := 0
+        err := APIstub.PutState(strconv.Itoa(i+1),trackerAsBytes)
+        */
 
 	resultsIterator, err := APIstub.GetStateByRange(startKey, endKey)
 	if err != nil {
@@ -220,7 +220,7 @@ func (s *SmartContract) queryAllFirearms(APIstub shim.ChaincodeStubInterface) sc
  * The queryFirearmHistory method *
 allows for assessing all the records added to the ledger for a given firearm
 This method takes one. Returns JSON string containing results. 
- */
+ *//que/qu
 func (s *SmartContract) queryFirearmHistory(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 
