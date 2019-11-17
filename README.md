@@ -18,7 +18,6 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
         * go version (shoudl be >=1.8)
    * get your path set-up
         * export PATH=$PWD/bin:$PATH
-   * Install Mongodb
         
   Clone the code from github:
   
@@ -40,7 +39,6 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    * npm install
    * cd sc-api
    * npm install
-   * npm install mongoose (not sure why this isn't in dependencies..)
    
    Verify that you've got what you need:
    * Scripts in SelfControlDemo/basic-network and sc-app should have execute permission (chmod +x *.sh)
@@ -57,19 +55,7 @@ In order to Run this Sample app,  must have this env set-up done.  Instruction f
    * node registerUser.js
    * node server.js
 
-   Then start the mongodb for the api:
-   * mongod  
-   * or mongod --config /usr/local/etc/mongod.conf
-   * this section pretty well is terrible...maybe if I get around to remembering why we have mongo in the firs tplace, I will udpate.  In the mean time , you're on your own with mongo
-   
-   Then start the api server from sc-api
-   * node server.js OR 
-   * npm run start
    
 Go to https://localhost:8000 on localbrowser to interact with the app.
-
-Go to https://localhost:3000/users or https://localhost:3000/license to interact with API (there are collections in Postman to test functionality of the API)
    
 Teardown scripts (stop.sh and teardown.sh) are in the basic-network folder.
- 
-Get vscode to say I'm jen not lilac
